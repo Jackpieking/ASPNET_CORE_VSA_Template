@@ -4,6 +4,7 @@
     <ProjectReference Include="..\..\External\FA2\FA2.csproj" />
     <ProjectReference Include="..\..\External\FA3\FA3.csproj" />
     <ProjectReference Include="..\..\External\FA4\FA4.csproj" />
+    <ProjectReference Include="..\..\External\FA5\FA5.csproj" />
   </ItemGroup>
   <PropertyGroup Label="Custom">
     <AppProjectName>FCommon</AppProjectName>

@@ -61,42 +61,6 @@ services:
     mem_reservation: 256m
     mem_swappiness: 1g
 
-  redis:
-    container_name: redis_container
-    build:
-      context: ./Customs/Redis
-      dockerfile: ./Dockerfile
-    command: /opt/bitnami/scripts/redis/run.sh --maxmemory 900mb --activedefrag yes --maxmemory-policy allkeys-lru --maxclients 5000
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "redis-cli",
-          "-p",
-          "${REDIS_NON_TLS_PORT}",
-          "--raw",
-          "incr",
-          "ping",
-        ]
-      interval: 5s
-      timeout: 30s
-      retries: 4
-    restart: unless-stopped
-    environment:
-      - REDIS_PORT_NUMBER=${REDIS_NON_TLS_PORT}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - REDIS_ACLFILE=/custom-config/user.acl
-      - REDIS_IO_THREADS=3
-      - REDIS_IO_THREADS_DO_READS=yes
-      - REDIS_AOF_ENABLED=no
-    ports:
-      - ${REDIS_NON_TLS_PORT}:${REDIS_NON_TLS_PORT}
-    networks:
-      - todo-app-network
-    mem_limit: 1g
-    mem_reservation: 256m
-    mem_swappiness: 1g
-
 volumes:
   postgres-volume:
 
